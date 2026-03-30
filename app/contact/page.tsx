@@ -28,7 +28,7 @@ const SOCIAL = [
   {
     name: 'Email',
     handle: YOUR_EMAIL,
-    href: `mailto:${YOUR_EMAIL}`,
+    href: `https://mail.google.com/mail/?view=cm&to=${YOUR_EMAIL}`,
     icon: (
       <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <rect x="2" y="4" width="20" height="16" rx="2" />
