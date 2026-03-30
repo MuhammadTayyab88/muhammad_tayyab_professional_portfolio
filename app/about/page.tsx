@@ -49,7 +49,7 @@ export default function About() {
         strong focus on measurable business outcomes, shipping systems that handle real load and real edge cases.
       </p>
       <p className="mt-4 text-slate-400 leading-relaxed max-w-2xl">
-        Over the past 2+ years I've delivered everything from government RFP automation engines and
+        Over the past 3+ years I've delivered everything from government RFP automation engines and
         supply-chain compliance tools to multi-tenant SaaS billing platforms — always with a full-stack,
         end-to-end approach.
       </p>

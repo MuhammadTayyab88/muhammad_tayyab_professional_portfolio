@@ -8,7 +8,7 @@ const TECH = [
 ]
 
 const STATS = [
-  { value: '2.5+', label: 'Years Experience' },
+  { value: '3+', label: 'Years Experience' },
   { value: '7+', label: 'Production Projects' },
   { value: '12+', label: 'Technologies' },
 ]
@@ -43,7 +43,7 @@ export default function Home() {
 
           {/* Bio */}
           <p className="fade-up delay-300 mt-5 max-w-2xl text-slate-400 leading-relaxed text-[0.95rem]">
-            Mid-level backend developer with 2+ years building Django &amp; FastAPI systems, AI integrations,
+            Mid-level backend developer with 3+ years building Django &amp; FastAPI systems, AI integrations,
             automation platforms and full-stack SaaS products. I design reliable architectures and ship
             production-ready systems for startups and enterprise workflows.
           </p>
