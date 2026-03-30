@@ -1,7 +1,13 @@
+'use client'
+
+import { useState, FormEvent } from 'react'
+
+const YOUR_EMAIL = 'md.tayyab.work@gmail.com'
+
 const SOCIAL = [
   {
     name: 'LinkedIn',
-    handle: 'linkedin.com/in/muhammad',
+    handle: 'linkedin.com/in/md-tayyab-work',
     href: 'https://www.linkedin.com/in/md-tayyab-work/',
     icon: (
       <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -11,7 +17,7 @@ const SOCIAL = [
   },
   {
     name: 'GitHub',
-    handle: 'github.com/muhammad',
+    handle: 'github.com/MuhammadTayyab88',
     href: 'https://github.com/MuhammadTayyab88',
     icon: (
       <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -21,8 +27,8 @@ const SOCIAL = [
   },
   {
     name: 'Email',
-    handle: 'hello@muhammad.dev',
-    href: 'md.tayyab.work@gmail.com',
+    handle: YOUR_EMAIL,
+    href: `mailto:${YOUR_EMAIL}`,
     icon: (
       <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -32,7 +38,50 @@ const SOCIAL = [
   },
 ]
 
+type Status = 'idle' | 'sending' | 'sent' | 'error'
+
 export default function Contact() {
+  const [status, setStatus] = useState<Status>('idle')
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+
+    const { name, email, subject, message } = form
+
+    if (!name || !email || !message) {
+      setStatus('error')
+      return
+    }
+
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      '',
+      message,
+    ].join('\n')
+
+    const mailtoUrl =
+      `mailto:${YOUR_EMAIL}` +
+      `?subject=${encodeURIComponent(subject || 'Portfolio enquiry')}` +
+      `&body=${encodeURIComponent(body)}`
+
+    setStatus('sending')
+
+    // Open Gmail / default mail client with fields pre-filled
+    window.open(mailtoUrl, '_blank')
+
+    // Short delay then show success
+    setTimeout(() => {
+      setStatus('sent')
+      setForm({ name: '', email: '', subject: '', message: '' })
+    }, 800)
+  }
+
   return (
     <div className="py-14">
       <div className="grid md:grid-cols-[1fr_1.4fr] gap-14 max-w-4xl">
@@ -48,13 +97,11 @@ export default function Contact() {
             full-time. If you have a project in mind or just want to connect, drop me a message.
           </p>
 
-          {/* Availability badge */}
           <div className="mt-6 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-emerald-500/20 bg-emerald-500/7 text-emerald-400 text-xs font-medium select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Open to new opportunities
           </div>
 
-          {/* Social links */}
           <div className="mt-8 space-y-3">
             {SOCIAL.map((s) => (
               <a
@@ -77,40 +124,100 @@ export default function Contact() {
         {/* ── Right: form ── */}
         <div className="rounded-2xl border border-white/7 bg-neutral-900/60 p-7">
           <h2 className="font-display font-bold text-lg text-slate-100 mb-6">Send a message</h2>
-          <form className="flex flex-col gap-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5">Your name</label>
-                <input name="name" type="text" placeholder="John Smith" className="form-input" />
+
+          {status === 'sent' ? (
+            /* ── Success state ── */
+            <div className="flex flex-col items-center justify-center py-12 text-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl">
+                ✓
               </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5">Email address</label>
-                <input name="email" type="email" placeholder="john@company.com" className="form-input" />
+              <p className="font-display font-bold text-slate-100">Message opened!</p>
+              <p className="text-sm text-slate-500 max-w-xs">
+                Your mail app opened with the message pre-filled. Just hit send and I'll get back to you shortly.
+              </p>
+              <button
+                onClick={() => setStatus('idle')}
+                className="mt-2 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+              >
+                Send another →
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1.5">
+                    Your name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    name="name"
+                    type="text"
+                    placeholder="John Smith"
+                    value={form.name}
+                    onChange={handleChange}
+                    className="form-input"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1.5">
+                    Email address <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="john@company.com"
+                    value={form.email}
+                    onChange={handleChange}
+                    className="form-input"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-500 mb-1.5">Subject</label>
-              <input name="subject" type="text" placeholder="Project enquiry / Role opportunity" className="form-input" />
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1.5">Subject</label>
+                <input
+                  name="subject"
+                  type="text"
+                  placeholder="Project enquiry / Role opportunity"
+                  value={form.subject}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-500 mb-1.5">Message</label>
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Tell me about your project, stack, timeline, and budget..."
-                className="form-input resize-none"
-              />
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1.5">
+                  Message <span className="text-red-400">*</span>
+                </label>
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Tell me about your project, stack, timeline, and budget..."
+                  value={form.message}
+                  onChange={handleChange}
+                  className="form-input resize-none"
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="accent-btn w-full py-2.5 rounded-lg text-white text-sm font-semibold mt-1"
-            >
-              Send Message →
-            </button>
-          </form>
+              {status === 'error' && (
+                <p className="text-xs text-red-400 -mt-1">
+                  Please fill in your name, email, and message.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="accent-btn w-full py-2.5 rounded-lg text-white text-sm font-semibold mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? 'Opening mail app…' : 'Send Message →'}
+              </button>
+
+              <p className="text-xs text-slate-600 text-center -mt-1">
+                Opens your mail client with the message pre-filled
+              </p>
+            </form>
+          )}
         </div>
 
       </div>
