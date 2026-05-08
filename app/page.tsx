@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ProjectCard } from '../components/ProjectCard'
+import { WhatsAppFloat } from '../components/WhatsAppFloat'
 import projects from '../utils/projects'
 
 const TECH = [
@@ -18,8 +19,10 @@ export default function Home() {
 
   return (
     <>
+      <WhatsAppFloat />
+
       {/* ── Hero ── */}
-      <section className="relative pt-20 pb-16 grid-bg overflow-hidden">
+      <section className="relative pt-12 pb-12 sm:pt-20 sm:pb-16 grid-bg overflow-hidden">
         {/* Ambient glow blobs */}
         <div className="pointer-events-none absolute -top-10 left-1/3 w-[480px] h-[480px] rounded-full bg-violet-700/10 blur-[100px]" />
         <div className="pointer-events-none absolute top-32 -right-20 w-64 h-64 rounded-full bg-purple-500/8 blur-[80px]" />
@@ -32,7 +35,7 @@ export default function Home() {
           </div>
 
           {/* Name */}
-          <h1 className="fade-up delay-100 font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none">
+          <h1 className="fade-up delay-100 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] sm:leading-none">
             Muhammad Tayyab
           </h1>
 
@@ -49,14 +52,14 @@ export default function Home() {
           </p>
 
           {/* CTAs */}
-          <div className="fade-up delay-400 mt-8 flex flex-wrap gap-3">
-            <a href="/resume.pdf" className="accent-btn px-5 py-2.5 rounded-lg text-white text-sm font-semibold">
+          <div className="fade-up delay-400 mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+            <a href="/resume.pdf" className="accent-btn px-5 py-2.5 rounded-lg text-white text-sm font-semibold text-center sm:text-left">
               Download Resume ↗
             </a>
-            <Link href="/contact" className="ghost-btn px-5 py-2.5 rounded-lg text-sm font-medium">
+            <Link href="/contact" className="ghost-btn px-5 py-2.5 rounded-lg text-sm font-medium text-center sm:text-left">
               Get in touch
             </Link>
-            <Link href="/projects" className="px-5 py-2.5 rounded-lg text-slate-500 hover:text-slate-300 transition-colors text-sm">
+            <Link href="/projects" className="px-5 py-2.5 rounded-lg text-slate-500 hover:text-slate-300 transition-colors text-sm text-center sm:text-left">
               View all projects →
             </Link>
           </div>
@@ -64,12 +67,12 @@ export default function Home() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="border-y border-white/5 py-10">
-        <div className="grid grid-cols-3 divide-x divide-white/5">
+      <section className="border-y border-white/5 py-8 sm:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 sm:divide-x divide-white/5">
           {STATS.map(({ value, label }) => (
-            <div key={label} className="text-center px-4">
-              <div className="font-display text-3xl sm:text-4xl font-extrabold text-gradient">{value}</div>
-              <div className="mt-1.5 text-xs text-slate-500 font-medium tracking-wide uppercase">{label}</div>
+            <div key={label} className="text-center px-2 sm:px-4">
+              <div className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-gradient">{value}</div>
+              <div className="mt-1.5 text-[0.65rem] sm:text-xs text-slate-500 font-medium tracking-wide uppercase leading-snug">{label}</div>
             </div>
           ))}
         </div>
@@ -77,10 +80,10 @@ export default function Home() {
 
       {/* ── Featured Projects ── */}
       <section className="py-16">
-        <div className="flex items-end justify-between mb-8">
-          <div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
+          <div className="min-w-0">
             <p className="section-label mb-2">Selected Work</p>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">Featured Projects</h2>
+            <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white">Featured Projects</h2>
           </div>
           <Link href="/projects" className="text-sm text-slate-500 hover:text-violet-400 transition-colors hidden sm:block">
             All projects →

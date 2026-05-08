@@ -3,11 +3,11 @@ import { ProjectCard } from '../../components/ProjectCard'
 
 export default function Projects() {
   return (
-    <div className="py-14">
+    <div className="py-10 sm:py-14 min-w-0">
 
       {/* ── Header ── */}
       <p className="section-label mb-3">Portfolio</p>
-      <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight">
+      <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
         Projects &amp; <span className="text-gradient">Case Studies</span>
       </h1>
       <p className="mt-4 max-w-2xl text-slate-400 leading-relaxed">

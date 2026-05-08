@@ -17,15 +17,15 @@ export function ProjectCard({ project, large = false }: any) {
     <article className={`
       group relative flex flex-col rounded-2xl border border-white/7
       bg-gradient-to-br from-neutral-900/80 to-neutral-850/80
-      p-6 card-hover
+      p-5 sm:p-6 card-hover
       ${large ? 'min-h-[220px]' : ''}
     `}>
       {/* Top row: title + category badge */}
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="font-display font-bold text-lg leading-snug text-slate-100 group-hover:text-white transition-colors">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3 min-w-0">
+        <h3 className="font-display font-bold text-base sm:text-lg leading-snug text-slate-100 group-hover:text-white transition-colors min-w-0 pr-1">
           {project.title}
         </h3>
-        <span className={`shrink-0 mt-0.5 px-2.5 py-0.5 rounded-full text-[0.68rem] font-semibold border ${catStyle}`}>
+        <span className={`shrink-0 self-start sm:mt-0.5 px-2.5 py-0.5 rounded-full text-[0.68rem] font-semibold border ${catStyle}`}>
           {project.category}
         </span>
       </div>
@@ -43,13 +43,13 @@ export function ProjectCard({ project, large = false }: any) {
       </div>
 
       {/* Footer: impact + link */}
-      <div className="mt-auto pt-5 flex items-end justify-between gap-3">
-        <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 max-w-[70%]">
+      <div className="mt-auto pt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+        <p className="text-xs text-slate-500 leading-relaxed line-clamp-2 sm:max-w-[70%]">
           {project.impact}
         </p>
         <Link
           href={`/projects/${project.slug}`}
-          className="shrink-0 text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors"
+          className="shrink-0 text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors self-start sm:self-auto"
         >
           Case Study →
         </Link>

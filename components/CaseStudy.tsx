@@ -19,7 +19,7 @@ export default function CaseStudy({ project }: any) {
   const catStyle = CATEGORY_STYLE[project.category] ?? 'bg-slate-500/10 text-slate-400 border-slate-500/25'
 
   return (
-    <article className="py-12 max-w-4xl">
+    <article className="py-8 sm:py-12 max-w-4xl min-w-0">
 
       {/* ── Back ── */}
       <Link
@@ -38,7 +38,7 @@ export default function CaseStudy({ project }: any) {
       <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight leading-snug">
         {project.title}
       </h1>
-      <p className="mt-3 text-lg text-slate-400 leading-relaxed max-w-2xl">{project.excerpt}</p>
+      <p className="mt-3 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">{project.excerpt}</p>
 
       {/* ── Stack pills ── */}
       <div className="mt-6 flex flex-wrap gap-2">
@@ -51,7 +51,7 @@ export default function CaseStudy({ project }: any) {
       <div className="mt-10 border-t border-white/5" />
 
       {/* ── Impact highlight ── */}
-      <div className="mt-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-6 py-5">
+      <div className="mt-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-4 sm:px-6 sm:py-5">
         <p className="section-label text-emerald-400 mb-2">Business Impact</p>
         <p className="text-slate-200 leading-relaxed">{project.impact}</p>
       </div>
@@ -77,8 +77,8 @@ export default function CaseStudy({ project }: any) {
       {/* ── Architecture ── */}
       <div className="mt-10">
         <Section label="Architecture Overview">
-          <div className="rounded-2xl border border-white/7 bg-neutral-900/60 p-6">
-            <p className="text-sm text-slate-300 font-mono leading-relaxed">
+          <div className="rounded-2xl border border-white/7 bg-neutral-900/60 p-4 sm:p-6 overflow-x-auto">
+            <p className="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed whitespace-pre-wrap break-words">
               {project.architecture.summary}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -112,7 +112,7 @@ export default function CaseStudy({ project }: any) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="mt-12 pt-8 border-t border-white/5 flex flex-wrap gap-4">
+      <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
         <Link href="/projects" className="ghost-btn px-5 py-2.5 rounded-lg text-sm font-medium">
           ← All projects
         </Link>

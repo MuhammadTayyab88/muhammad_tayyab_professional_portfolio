@@ -6,7 +6,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) return <div className="py-8">Project not found</div>
 
   return (
-    <section className="py-6">
+    <section className="py-4 sm:py-6 min-w-0">
       <CaseStudy project={project} />
     </section>
   )

@@ -83,13 +83,13 @@ export default function Contact() {
   }
 
   return (
-    <div className="py-14">
-      <div className="grid md:grid-cols-[1fr_1.4fr] gap-14 max-w-4xl">
+    <div className="py-10 sm:py-14 min-w-0">
+      <div className="grid md:grid-cols-[1fr_1.4fr] gap-10 md:gap-14 max-w-4xl">
 
         {/* ── Left: info ── */}
         <div>
           <p className="section-label mb-3">Contact</p>
-          <h1 className="font-display text-4xl font-extrabold tracking-tight leading-snug">
+          <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight leading-snug">
             Let&rsquo;s build <span className="text-gradient">something great</span>
           </h1>
           <p className="mt-4 text-slate-400 leading-relaxed text-sm">
@@ -112,9 +112,9 @@ export default function Contact() {
                 className="flex items-center gap-3 p-3 rounded-xl border border-white/7 bg-white/2 hover:border-violet-500/30 hover:bg-violet-500/5 transition-all group"
               >
                 <span className="text-slate-500 group-hover:text-violet-400 transition-colors">{s.icon}</span>
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-xs font-semibold text-slate-300 group-hover:text-white transition-colors">{s.name}</div>
-                  <div className="text-xs text-slate-600">{s.handle}</div>
+                  <div className="text-xs text-slate-600 break-all">{s.handle}</div>
                 </div>
               </a>
             ))}
@@ -122,7 +122,7 @@ export default function Contact() {
         </div>
 
         {/* ── Right: form ── */}
-        <div className="rounded-2xl border border-white/7 bg-neutral-900/60 p-7">
+        <div className="rounded-2xl border border-white/7 bg-neutral-900/60 p-4 sm:p-6 md:p-7 min-w-0">
           <h2 className="font-display font-bold text-lg text-slate-100 mb-6">Send a message</h2>
 
           {status === 'sent' ? (

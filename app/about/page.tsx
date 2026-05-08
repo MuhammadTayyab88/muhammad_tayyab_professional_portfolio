@@ -36,11 +36,11 @@ const VALUES = [
 
 export default function About() {
   return (
-    <div className="py-14 max-w-4xl">
+    <div className="py-10 sm:py-14 max-w-4xl min-w-0">
 
       {/* ── Intro ── */}
       <p className="section-label mb-3">About Me</p>
-      <h1 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight">
+      <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
         Building Systems That <span className="text-gradient">Actually Work</span>
       </h1>
       <p className="mt-5 text-slate-400 leading-relaxed max-w-2xl">
@@ -71,9 +71,9 @@ export default function About() {
         <div className="space-y-4">
           {SKILLS.map(({ name, pct }) => (
             <div key={name}>
-              <div className="flex justify-between text-sm text-slate-400 mb-1.5">
-                <span>{name}</span>
-                <span className="text-slate-600">{pct}%</span>
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:items-center text-sm text-slate-400 mb-1.5 min-w-0">
+                <span className="break-words pr-2">{name}</span>
+                <span className="text-slate-600 shrink-0">{pct}%</span>
               </div>
               <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                 <div
